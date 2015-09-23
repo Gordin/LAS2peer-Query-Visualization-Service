@@ -1,0 +1,41 @@
+qvs:
+    container_name: mobsos-qvs 
+    image: gordinlearninglayers/mobsos-qvs
+    env_file:
+        - common.env
+        - services/mobsos-query-visualization/QVS.env
+    volumes_from:
+        - qvsdata
+    volumes:
+        - /dev/urandom:/dev/random
+    links:
+        - mysql
+    needs:
+        - adapter:
+            links:
+                - qvs
+        - qvsdata
+        - qvsfrontend
+        - qvsnginx
+
+qvsdata:
+    container_name: mobsos-qvs-data 
+    image: gordinlearninglayers/mobsos-qvs-data
+    env_file:
+        - common.env
+        - services/mobsos-query-visualization/QVS.env
+
+qvsfrontend:
+    container_name: mobsos-qvs-frontend 
+    image: gordinlearninglayers/mobsos-qvs-frontend
+    # build: mobsos-query-visualization-frontend
+    env_file:
+        - common.env
+        - services/mobsos-query-visualization/QVS.env
+    needs:
+        - adapter:
+            volumes_from:
+                - qvsfrontend
+
+qvsnginx:
+    image: gordinlearninglayers/mobsos-qvs-nginx
