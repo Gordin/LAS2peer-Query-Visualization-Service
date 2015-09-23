@@ -3,7 +3,7 @@ qvs:
     image: gordinlearninglayers/mobsos-qvs
     env_file:
         - common.env
-        - services/mobsos-query-visualization/QVS.env
+        - services/LAS2peer-Query-Visualization-Service/QVS.env
     volumes_from:
         - qvsdata
     volumes:
@@ -23,7 +23,7 @@ qvsdata:
     image: gordinlearninglayers/mobsos-qvs-data
     env_file:
         - common.env
-        - services/mobsos-query-visualization/QVS.env
+        - services/LAS2peer-Query-Visualization-Service/QVS.env
 
 qvsfrontend:
     container_name: mobsos-qvs-frontend 
@@ -31,7 +31,7 @@ qvsfrontend:
     # build: mobsos-query-visualization-frontend
     env_file:
         - common.env
-        - services/mobsos-query-visualization/QVS.env
+        - services/LAS2peer-Query-Visualization-Service/QVS.env
     needs:
         - adapter:
             volumes_from:
