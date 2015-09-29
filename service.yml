@@ -34,8 +34,9 @@ qvsfrontend:
         - services/LAS2peer-Query-Visualization-Service/QVS.env
     needs:
         - adapter:
-            volumes_from:
-                - qvsfrontend
+            volumes_from: [qvsfrontend]
+        - databases:
+            - QVS.env:QVS
 
 qvsnginx:
     image: gordinlearninglayers/mobsos-qvs-nginx
