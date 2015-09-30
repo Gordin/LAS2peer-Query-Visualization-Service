@@ -38,5 +38,6 @@ qvsfrontend:
                 - qvsfrontend
         - create_databases:
             - "services/LAS2peer-Query-Visualization-Service/QVS.env QVS"
+            - "services/LAS2peer-Query-Visualization-Service/QVS.env QVS2"
 qvsnginx:
     image: gordinlearninglayers/mobsos-qvs-nginx
